@@ -9,3 +9,4 @@ edition = "2018"
 [dependencies]
 log ="0.4.11"
 log4rs= "0.13.0"
+actix-web = "3.0.0-beta.3"
