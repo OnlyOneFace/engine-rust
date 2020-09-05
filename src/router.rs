@@ -5,13 +5,13 @@ use serde::Serialize;
 
 #[derive(Serialize)]
 struct AnyThing {
-    name: Box<dyn Any>,
+    value: Box<dyn Any>,
 }
 
 impl AnyThing {
     fn new(a: Box<dyn Any>) -> AnyThing {
         AnyThing {
-            name: a,
+            value: a,
         }
     }
 }
