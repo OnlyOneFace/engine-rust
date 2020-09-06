@@ -41,7 +41,6 @@ impl Serialize for AnyThing {
                 }
                 map.end()
             }
-            _ => {}
         }
     }
 }
