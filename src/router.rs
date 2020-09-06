@@ -18,7 +18,7 @@ impl Serialize for AnyThing {
         S: Serializer {
         match *self {
             AnyThing::U32(value) => serializer.serialize_u32(value),
-            AnyThing::I32(value) => serializer.serialize_I32(value),
+            AnyThing::I32(value) => serializer.serialize_i32(value),
             AnyThing::String(ref value) => serializer.serialize_str(value),
             AnyThing::MapSS(ref map_var) => {
                 let mut map = serializer.serialize_map(Some(map_var.len()))?;
