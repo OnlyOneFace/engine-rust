@@ -3,9 +3,9 @@ use std::time;
 use log::{info, error};
 use std::sync::{Arc, Mutex};
 
-pub fn get_sql() -> Arc<Mutex<Pool<MySqlConnection>>> {
-    static mut CONN_POOL: Option<Arc<Mutex<Pool<MySqlConnection>>>> = None;
+static mut CONN_POOL: Option<Arc<Mutex<Pool<MySqlConnection>>>> = None;
 
+pub fn get_sql() -> Arc<Mutex<Pool<MySqlConnection>>> {
     unsafe {// Rust中使用可变静态变量都是unsafe的
         CONN_POOL.get_or_insert_with(|| {
             // 初始化单例对象的代码
@@ -30,7 +30,7 @@ fn init_sql() -> Pool<MySqlConnection> {
         max_lifetime(time::Duration::from_secs(1800)).
         idle_timeout(time::Duration::from_secs(600)).
         build(sql_url.as_str()).await;
-    match p {
+    match pool {
         Ok(conn) => conn,
         Err(e) => {
             let msg = format!("mysql connect failed.Error:{:?}", e);

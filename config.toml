@@ -1,0 +1,10 @@
+#mysl数据库配置
+[mysql]
+#mysql 连接地址ip或域名
+host = "192.168.31.62"
+#用户
+user = "root"
+#密码
+password = "123456"
+#端口
+port = 3306
