@@ -11,5 +11,5 @@ log = "0.4.11"
 log4rs = "0.13.0"
 actix-web = "3.0.0-beta.3"
 serde = "1.0.115"
-tokio = {version = "0.2.15", features = ["full"] }
-sqlx = {version = "0.3", default-features = false, features = ["runtime-tokio", "mysql", "chrono"]}
+tokio = "0.2.15"
+mysql_async = "0.22.2"
