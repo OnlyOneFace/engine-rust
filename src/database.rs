@@ -7,7 +7,8 @@ use log::{error, info};
 pub static MYSQL_POOL: OnceCell<Pool<MySql>> = OnceCell::new();
 
 pub fn init_db_pool() {
-    let sql_url = format!("%{}:{}@tcp({}:{})/%{}?charset=%{}&parseTime=True&loc=Local",
+    // mysql://root:root@127.0.0.1:3306/testdb
+    let sql_url = format!("mysql://{}:{}@{}:{}/{}?charset={}&parseTime=True&loc=Local",
                           "root",
                           "123456",
                           "192.168.31.62",
