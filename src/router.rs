@@ -3,9 +3,6 @@ use std::collections::HashMap;
 use serde::{Serialize, Serializer};
 use serde::ser::SerializeMap;
 
-use mysql_async::prelude::Queryable;
-
-use crate::model::sql;
 
 enum AnyThing {
     String(String),
@@ -52,9 +49,6 @@ impl Serialize for AnyThing {
 pub async fn index(web::Path((id, name)): web::Path<(u32, String)>,
                    query: web::Query<HashMap<String, String>>,
                    body: web::Json<HashMap<String, String>>) -> impl Responder {
-    let conn = sql::get_pool().get_conn().await.expect("get conn failed");
-    let result = conn.query("SELECT * FROM t_user").await.expect("query failed");
-    println!("{}", result.is_empty());
     let mut temp_map: HashMap<&str, AnyThing> = HashMap::new();
     temp_map.insert("hello", AnyThing::String(name));
     temp_map.insert("id", AnyThing::U32(id));
